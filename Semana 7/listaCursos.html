@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="container">
+  
     <header>
       <!-- place navbar here -->
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
@@ -50,42 +50,7 @@
     <main>
 
       <!-- Para consultar por id -->
-      <div class="container">
-        <div class="row justify-content-center text-center">
-
-          <div class="col-md-6">
-            
-  
-            <form id="form_buscar" action="">
-  
-              <div class="mb-3">
-                  <label for="" class="form-label">Id del curso</label>
-                  <input type="text" name="" id="id" class="form-control" placeholder="ID here"
-                      aria-describedby="helpId">
-                  <small id="helpId" class="text-muted">Help text</small>
-              </div>
-              <div class="mb-3">
-                  <button type="reset" id="" class="btn btn-danger">Limpiar</button>
-                  <button type="submit" id="" class="btn btn-primary">Buscar</button>
-              </div>
-          </form>
-  
-          </div>
-  
-          <div class="col-md-6 ">
-            
-            <h4 class="alig" > Información del curso</h4>
-
-            <div class="infoCurso">
-
-            </div>
-  
-          </div>
-  
-          
-        </div>
-
-      </div>
+      
 
       <!-- Fin bloque de consulta -->
       
@@ -109,25 +74,14 @@
           <tfoot></tfoot>
         </table>
       </div>
+
+
+      
+      
     </main>
     <footer class="text-muted py-5">
-      <!-- place footer here -->
-      <div class="container">
-        <p class="float-end mb-1">
-          <a href="./listaCursos.html">Back to top</a>
-        </p>
-        <p class="mb-1">Jeaustin Rojas &copy; Bootstrap</p>
-      </div>
-    </footer>
-  </div>
 
-      <!-- Modal trigger button -->
-      <!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId"> -->
-        <!-- Launch
-      </button> -->
-      
-      <!-- Modal Body -->
-      <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+      <!-- Modal here -->
       <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
@@ -170,6 +124,18 @@
           </div>
         </div>
       </div>
+
+      <!-- place footer here -->
+      <div class="container">
+        <p class="float-end mb-1">
+          <a href="./listaCursos.html">Back to top</a>
+        </p>
+        <p class="mb-1">Jeaustin Rojas &copy; Bootstrap</p>
+      </div>
+    </footer>
+  
+
+      
       
       
       <!-- Optional: Place to the bottom of scripts -->
@@ -216,7 +182,7 @@
    
                   <button type="reset" id="" onClick="limpiar()" class="borrar btn btn-danger">Limpiar</button>
                   ||
-                  <button type="button" onClick()="editar('${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
+                  <button type="button" onClick="editar('${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
                     Editar
                 </button>
 
@@ -230,53 +196,50 @@
      function limpiar(){
       alert("Limpiando...");
      }
-
+    
+    
      function editar(nombre, des, tiempo){
-      const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-
-
+      const myModal = new bootstrap.Modal(document.getElementById('modalId') )
+      myModal.show();
+        
+          document.getElementById('nombre').value = nombre;
       
-
-      var nombre = document.getElementById('nombre')
-      
-      var descripcion = document.getElementById('descripcion').value(des.value);
-       var tiempo = document.getElementById('tiempo').value(tiempo.value);    
-
-       myModal.show();
+        document.getElementById('descripcion').value= des;
+        document.getElementById('tiempo').value  = tiempo;
 
      }
      
 
   //  Codigo para buscar form_buscar
 
-  var formulario = document.getElementById('form_buscar');
+  // var formulario = document.getElementById('form_buscar');
 
-    var infocurso = document.getElementById('infoCurso');
+  //   var infocurso = document.getElementById('infoCurso');
 
-    formulario.addEventListener('submit', function(e){
-      alert("Buscando...");
-        e.preventDefault();
+  //   formulario.addEventListener('submit', function(e){
+  //     alert("Buscando...");
+  //       e.preventDefault();
 
-        var id = document.getElementById('id').value;
+  //       var id = document.getElementById('id').value;
         
-        console.log(`${id}`);
+  //       console.log(`${id}`);
 
         
-           fetch(`https://paginas-web-cr.com/ApiPHP/apis/ListaCursoId.php`, {id}
+  //          fetch(`https://paginas-web-cr.com/ApiPHP/apis/ListaCursoId.php`, {id}
                     
-            ).then((respuesta) => respuesta.json()) //recibe los datos em formato json
-                .then((datosrespuesta) => {
-                  console.log('Datos, datosrespuesta');
-                  ve(datosrespuesta);
-                })
-                .catch(console.log);
+  //           ).then((respuesta) => respuesta.json()) //recibe los datos em formato json
+  //               .then((datosrespuesta) => {
+  //                 console.log('Datos, datosrespuesta');
+  //                 ve(datosrespuesta);
+  //               })
+  //               .catch(console.log);
         
 
-    });
+  //   });
     
-    function ve(datos) {
-      console.log("Datos", datos);
-    }
+  //   function ve(datos) {
+  //     console.log("Datos", datos);
+  //   }
     // FIN BLOQUE DE BUSQUEDA
     cargarDatos();
   </script>
