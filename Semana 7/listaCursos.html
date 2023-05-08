@@ -101,6 +101,8 @@
               <th>Nombre</th>
               <th>Descripcion</th>
               <th>Tiempo</th>
+              <th>Usuario</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody id="resultados" class="table-group-divider"></tbody>
@@ -118,6 +120,62 @@
       </div>
     </footer>
   </div>
+
+      <!-- Modal trigger button -->
+      <!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId"> -->
+        <!-- Launch
+      </button> -->
+      
+      <!-- Modal Body -->
+      <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+      <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="formulario" action="">
+                <div class="mb-3">
+                    <label for="" class="form-label">Nombre</label>
+                    <input type="text" name="" id="nombre" class="form-control" placeholder="ingresar nombre del curso"
+                        aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Help text</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Descripción</label>
+                    <input type="text" name="" id="descripcion" class="form-control" placeholder="Descripción acá"
+                        aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Help text</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Tiempo</label>
+                    <input type="text" name="" id="tiempo" class="form-control" placeholder="Tiempo acá"
+                        aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Help text</small>
+                </div>
+                <div class="mb-3">
+                    <button type="reset" id="" class="btn btn-danger">Limpiar</button>
+                    <button type="submit" id="" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <!-- Optional: Place to the bottom of scripts -->
+      
+ 
+   
   <!-- {"id":"377","nombre":"hola leo","descripcion":"sdsd","tiempo":"asasa"}, -->
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -153,9 +211,41 @@
             <td>${valor.nombre}</td>
             <td>${valor.descripcion}</td>
             <td>${valor.tiempo}</td>
+            <td>${valor.usuario}</td>
+            <td >
+   
+                  <button type="reset" id="" onClick="limpiar()" class="borrar btn btn-danger">Limpiar</button>
+                  ||
+                  <button type="button" onClick()="editar('${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
+                    Editar
+                </button>
+
+                  
+              </td>
+
           </tr>`;
       }
     }
+  
+     function limpiar(){
+      alert("Limpiando...");
+     }
+
+     function editar(nombre, des, tiempo){
+      const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+
+
+      
+
+      var nombre = document.getElementById('nombre')
+      
+      var descripcion = document.getElementById('descripcion').value(des.value);
+       var tiempo = document.getElementById('tiempo').value(tiempo.value);    
+
+       myModal.show();
+
+     }
+     
 
   //  Codigo para buscar form_buscar
 
