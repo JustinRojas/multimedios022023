@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Listar Datos</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <!-- place navbar here -->
+      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Lista de Elementos</a>
+          <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="listaCursos.html">Cursos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="listaEstudiantes.html">Estudiantes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="listaProfesores.html" aria-current="page">Profesores <span
+                    class="visually-hidden">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="listaUsuarios.html">Usuarios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="listaGrupos.html">Grupos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-borderless table-danger align-middle">
+          <thead class="table-light">
+            <caption>
+              Table Name
+            </caption>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Cedula</th>
+              <th>Correo electronico</th>
+              <th>Telefono</th>
+              <th>Nacionalidad</th>
+            </tr>
+          </thead>
+          <tbody id="resultados" class="table-group-divider"></tbody>
+          <tfoot></tfoot>
+        </table>
+
+      </div>
+    </main>
+    <footer class="text-muted py-5">
+      <!-- place footer here -->
+      <div class="container">
+        <p class="float-end mb-1">
+          <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1">Josue Sosa &copy; Bootstrap</p>
+      </div>
+    </footer>
+  </div>
+  <!-- {"id":"377","nombre":"hola leo","descripcion":"sdsd","tiempo":"asasa"}, -->
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
+
+  <script>
+    //declaracion de variabe
+    var contenidoTablaResultado = document.querySelector("#resultados");
+
+    function cargarDatos() {
+      fetch("https://paginas-web-cr.com/ApiPHP/apis/ListaProfesores.php")
+        .then((respuesta) => respuesta.json()) //recibe los datos em formato json
+        .then((datosrespuesta) => {
+          setTable(datosrespuesta.data); //lo envio a la funcion de abajo
+          // console.log('Datos', datosrespuesta.data);
+        })
+        .catch(console.log);
+    }
+
+    function setTable(datos) {
+      console.log("Datos", datos);
+
+      for (const valor of datos) {
+        console.log("valor", valor);
+        contenidoTablaResultado.innerHTML += `
+          <tr class="table-danger">
+            <td scope="row">${valor.id}</td>
+            <td>${valor.nombre}</td>
+            <td>${valor.cedula}</td>
+            <td>${valor.correoelectronico}</td>
+            <td>${valor.telefono}</td>
+            <td>${valor.nacionalidad}</td>
+          </tr>`;
+      }
+    }
+
+    cargarDatos();
+  </script>
+</body>
+
+</html>

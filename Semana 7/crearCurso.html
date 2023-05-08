@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header>
+            <!-- place navbar here -->
+        </header>
+        <main>
+            <form id="formulario" action="">
+                <div class="mb-3">
+                    <label for="" class="form-label">Nombre</label>
+                    <input type="text" name="" id="nombre" class="form-control" placeholder="ingresar nombre del curso"
+                        aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Help text</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Descripción</label>
+                    <input type="text" name="" id="descripcion" class="form-control" placeholder="Descripción acá"
+                        aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Help text</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Tiempo</label>
+                    <input type="text" name="" id="tiempo" class="form-control" placeholder="Tiempo acá"
+                        aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Help text</small>
+                </div>
+                <div class="mb-3">
+                    <button type="reset" id="" class="btn btn-danger">Limpiar</button>
+                    <button type="submit" id="" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+    </div>
+
+
+    <script>
+        var formulario = document.getElementById('formulario');
+        
+
+
+        formulario.addEventListener('submit', function (e) {
+            alert('Salvando');
+            e.preventDefault();
+            var nombre = document.getElementById('nombre').value;
+            var descripcion = document.getElementById('descripcion').value;
+            var tiempo = document.getElementById('tiempo').value;
+
+
+            var datosenviar = {
+                nombre: `${nombre}`,
+                descripcion:  `${descripcion}`, //los datos que se ocupan para insertar
+                tiempo:  `${tiempo}`,
+                usuario: "Josua"
+            }
+            console.log(datosenviar);
+
+            fetch("https://paginas-web-cr.com/ApiPHP/apis/InsertarCursos.php", 
+                {
+                    method: 'POST', //por que es el método que se usa para insertar
+                    body: JSON.stringify(datosenviar)
+                }
+            ).then((respuesta) => respuesta.json()) //recibe los datos em formato json
+                .then((datosrespuesta) => {
+                    console.log('Datos, datosrespuesta');
+                    
+                })
+                .catch(console.log);
+
+        });
+
+
+
+
+    </script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
