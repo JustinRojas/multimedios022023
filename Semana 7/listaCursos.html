@@ -49,10 +49,12 @@
     </header>
     <main>
 
-      <!-- Para consultar por id -->
+      <!-- Botón que para crear curso -->
+      <button type="button" onClick="crearCurso()" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#modalId">
+        Crear un nuevo curso
+      </button>
       
-
-      <!-- Fin bloque de consulta -->
+     
       
 
       <div class="table-responsive">
@@ -76,43 +78,37 @@
       </div>
 
 
-      
-      
-    </main>
-    <footer class="text-muted py-5">
-
-      <!-- Modal here -->
       <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="modalTitleId">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" onClick="cerrarModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form id="formulario" action="">
                 <div class="mb-3">
                     <label for="" class="form-label">Nombre</label>
-                    <input type="text" name="" id="nombre" class="form-control" placeholder="ingresar nombre del curso"
+                    <input type="text" name="" id="nombre" required class="form-control" placeholder="ingresar nombre del curso"
                         aria-describedby="helpId">
-                    <small id="helpId" class="text-muted">Help text</small>
+                    <small id="helpId" class="text-muted">Campo requerido</small>
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">Descripción</label>
-                    <input type="text" name="" id="descripcion" class="form-control" placeholder="Descripción acá"
+                    <input type="text" name="" id="descripcion" required class="form-control" placeholder="Descripción acá"
                         aria-describedby="helpId">
-                    <small id="helpId" class="text-muted">Help text</small>
+                    <small id="helpId" class="text-muted">Campo requerido</small>
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">Tiempo</label>
-                    <input type="text" name="" id="tiempo" class="form-control" placeholder="Tiempo acá"
+                    <input type="text" name="" id="tiempo" required class="form-control" placeholder="Tiempo acá"
                         aria-describedby="helpId">
-                    <small id="helpId" class="text-muted">Help text</small>
+                    <small id="helpId" class="text-muted">Campo requerido</small>
                 </div>
                 <div class="mb-3">
-                    <button type="reset" id="" class="btn btn-danger">Limpiar</button>
+                    <button type="reset" id="" class="btn btn-danger">Cancelar</button>
                     <button type="submit" id="" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
@@ -124,6 +120,13 @@
           </div>
         </div>
       </div>
+      
+      
+    </main>
+    <footer class="text-muted py-5">
+
+      <!-- Modal here -->
+      
 
       <!-- place footer here -->
       <div class="container">
@@ -141,6 +144,7 @@
       <!-- Optional: Place to the bottom of scripts -->
       
  
+      
    
   <!-- {"id":"377","nombre":"hola leo","descripcion":"sdsd","tiempo":"asasa"}, -->
   <!-- Bootstrap JavaScript Libraries -->
@@ -180,9 +184,9 @@
             <td>${valor.usuario}</td>
             <td >
    
-                  <button type="reset" id="" onClick="limpiar()" class="borrar btn btn-danger">Limpiar</button>
+                  <button type="" id="" onClick="eliminar('${valor.id}','${valor.nombre}')" class="borrar btn btn-danger">Eliminar</button>
                   ||
-                  <button type="button" onClick="editar('${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
+                  <button type="button" onClick="editar('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
                     Editar
                 </button>
 
@@ -193,54 +197,125 @@
       }
     }
   
-     function limpiar(){
+     function eliminar( id, nombre){
       alert("Limpiando...");
      }
     
-    
-     function editar(nombre, des, tiempo){
-      const myModal = new bootstrap.Modal(document.getElementById('modalId') )
-      myModal.show();
-        
-          document.getElementById('nombre').value = nombre;
-      
-        document.getElementById('descripcion').value= des;
-        document.getElementById('tiempo').value  = tiempo;
+     const myModal = new bootstrap.Modal(document.getElementById('modalId') );
+    //nuestra referencia al modal
 
+     function cerrarModal(){
+        myModal.hide();
+        
      }
      
+     
 
-  //  Codigo para buscar form_buscar
 
-  // var formulario = document.getElementById('form_buscar');
+     //INICIO BLOQUE METODOS PARA ACTUALIZAR UN CURSO
 
-  //   var infocurso = document.getElementById('infoCurso');
-
-  //   formulario.addEventListener('submit', function(e){
-  //     alert("Buscando...");
-  //       e.preventDefault();
-
-  //       var id = document.getElementById('id').value;
+    //  método que carga el modal de editar con los datos del curso
+     function editar(id, nombre, des, tiempo){    
+        myModal.show();
+   
+        document.getElementById('nombre').value = nombre;  //pasamos los datos al modal
+        document.getElementById('descripcion').value= des;
+        document.getElementById('tiempo').value  = tiempo;
         
-  //       console.log(`${id}`);
+          actualizarCurso(id);
+     };
+     
+     //Método que se encarga de actualizar
+        function actualizarCurso(id){
 
-        
-  //          fetch(`https://paginas-web-cr.com/ApiPHP/apis/ListaCursoId.php`, {id}
+          formulario.addEventListener('submit', function (e) {           
+            e.preventDefault();
+
+            var nombre = document.getElementById('nombre').value;
+            var descripcion = document.getElementById('descripcion').value;
+            var tiempo = document.getElementById('tiempo').value;
+            
+
+             datosenviar={
+              id: `${id}`,
+                nombre: `${nombre}`,
+                descripcion:  `${descripcion}`, //los datos que se ocupan para insertar
+                tiempo:  `${tiempo}`,
+                usuario: "kasan"
+            }
+
+             fetch("https://paginas-web-cr.com/ApiPHP/apis/ActualizarCursos.php", 
+                 {
+                     method: 'POST', //por que es el método que se usa para insertar
+                     body: JSON.stringify(datosenviar)
+                 }
+             ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
+                 .then((datosrespuesta) => {
+                     console.log('Datos, datosrespuesta');
+                     alert('Los datos se editaron correctamente');
+                     window.location.href = "./listaCursos.html";
                     
-  //           ).then((respuesta) => respuesta.json()) //recibe los datos em formato json
-  //               .then((datosrespuesta) => {
-  //                 console.log('Datos, datosrespuesta');
-  //                 ve(datosrespuesta);
-  //               })
-  //               .catch(console.log);
-        
+                 })
+                 .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
 
-  //   });
-    
-  //   function ve(datos) {
-  //     console.log("Datos", datos);
-  //   }
-    // FIN BLOQUE DE BUSQUEDA
+        });
+         
+        };
+
+        //FIN BLOQUE METODOS PARA ACTUALIZAR UN CURSO
+
+    //  Funciones para crear curso
+    var formulario = document.getElementById('formulario');
+
+  
+      function limpiarCampos(){
+          document.getElementById('nombre').value= "";
+          document.getElementById('descripcion').value ="";
+          document.getElementById('tiempo').value ="";
+      };
+
+      formulario.addEventListener('reset', function(e){  
+          alert('Cancelando, y volviendo al index');
+          limpiarCampos();
+          window.location.href = "./listaCursos.html";
+      });
+
+
+     function crearCurso(){
+      formulario.addEventListener('submit', function (e) {           
+            e.preventDefault();
+
+            var nombre = document.getElementById('nombre').value;
+            var descripcion = document.getElementById('descripcion').value;
+            var tiempo = document.getElementById('tiempo').value;
+            
+            var datosenviar = {
+                nombre: `${nombre}`,
+                descripcion:  `${descripcion}`, //los datos que se ocupan para insertar
+                tiempo:  `${tiempo}`,
+                usuario: "SS"
+            }
+            console.log(datosenviar);
+
+             fetch("https://paginas-web-cr.com/ApiPHP/apis/InsertarCursos.php", 
+                 {
+                     method: 'POST', //por que es el método que se usa para insertar
+                     body: JSON.stringify(datosenviar)
+                 }
+             ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
+                 .then((datosrespuesta) => {
+                     console.log('Datos, datosrespuesta');
+                     alert('Los datos se guardaron correctamente');
+                     window.location.href = "./listaCursos.html";
+                 })
+                 .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
+
+        });
+     };
+
+ 
     cargarDatos();
   </script>
 </body>
