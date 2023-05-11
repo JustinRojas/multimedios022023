@@ -49,10 +49,26 @@
     </header>
     <main>
 
-      <!-- Botón que para crear curso -->
-      <button type="button" onClick="crearCurso()" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#modalId">
-        Crear un nuevo curso
-      </button>
+      <div class="container">
+        <div class="row">
+          <div class="col align-self-start">
+              
+              <blockquote class="blockquote">
+                <p>Welcome to courses view</p>
+              </blockquote>
+          </div>
+          <div class="col align-self-center">
+           
+          </div>
+          <div class="col align-self-end ">
+            <!-- Botón que para crear curso -->
+            <button type="button" onClick="crearCurso()" class="btn btn-primary btn-md mt-4 mb-4 "  data-bs-toggle="modal" data-bs-target="#modalId">
+              Crear un nuevo curso
+            </button>
+          </div>
+        </div>
+      </div>
+      
       
      
       
@@ -108,7 +124,7 @@
                     <small id="helpId" class="text-muted">Campo requerido</small>
                 </div>
                 <div class="mb-3">
-                    <button type="reset" id="" class="btn btn-danger">Cancelar</button>
+                    <button type="reset" id="cancel-rest" class="btn btn-danger">Cancelar</button>
                     <button type="submit" id="" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
@@ -125,8 +141,36 @@
     </main>
     <footer class="text-muted py-5">
 
-      <!-- Modal here -->
       
+      <!-- Modal Body -->
+      <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+      <div class="modal fade" id="modalEliminar" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+              <div id="modalcontent"> 
+
+              </div>
+              <form id="formConfirmacion" action="">
+                <button type="reset"  class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+              <button type="submit" class="btn btn-primary">Cancelar</button>
+              </form>
+              
+            </div>
+            <div class="modal-footer">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+     
 
       <!-- place footer here -->
       <div class="container">
@@ -159,7 +203,7 @@
   <script>
     //declaracion de variabe
     var contenidoTablaResultado = document.querySelector("#resultados");
-
+    var tipoFuncion;
     function cargarDatos() {
       fetch("https://paginas-web-cr.com/ApiPHP/apis/ListaCurso.php")
         .then((respuesta) => respuesta.json()) //recibe los datos em formato json
@@ -184,9 +228,11 @@
             <td>${valor.usuario}</td>
             <td >
    
-                  <button type="" id="" onClick="eliminar('${valor.id}','${valor.nombre}')" class="borrar btn btn-danger">Eliminar</button>
+              <button type="button" onClick="eliminar('${valor.id}')" class="btn btn-danger data-bs-toggle="modal" data-bs-target="#modalEliminar"">
+        Eliminar
+      </button>
                   ||
-                  <button type="button" onClick="editar('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
+                  <button type="button" onClick="cargarModal('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
                     Editar
                 </button>
 
@@ -197,9 +243,7 @@
       }
     }
   
-     function eliminar( id, nombre){
-      alert("Limpiando...");
-     }
+     
     
      const myModal = new bootstrap.Modal(document.getElementById('modalId') );
     //nuestra referencia al modal
@@ -211,18 +255,70 @@
      
      
 
+     //INICO FUNCIÓN PARA ELIMINAR
+    //  modal eliminar 
+     const mdDelete = new bootstrap.Modal(document.getElementById('modalEliminar'));
+     
+     var formConfirmacion= document.getElementById('formConfirmacion');
+     var modalcontent = document.getElementById('modalcontent');
+
+     function confirmarEliminacion(id){
+      mdDelete.show();
+      modalcontent.innerHTML= `<h6 > Desea eliminar el curso con id ${id} </h6>`;
+
+      formConfirmacion.addEventListener('reset', function (e) {
+        e.preventDefault();
+        var nombre = document.getElementById('nombre').value;
+            
+             datosenviar={
+              id: `${id}`
+            }
+
+             fetch("https://paginas-web-cr.com/ApiPHP/apis/BorrarCursos.php", 
+                 {
+                     method: 'POST', //por que es el método que se usa para insertar
+                     body: JSON.stringify(datosenviar)
+                 }
+             ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
+                 .then((datosrespuesta) => {
+                     console.log('Datos, datosrespuesta');
+                     window.location.href = "./listaCursos.html";
+                     alert(`El curso con id ${id} se borró correctamente`);
+                 })
+                 .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
+
+      });
+
+      formConfirmacion.addEventListener('submit', function (e)
+     {
+      alert('Cancelando...');
+      mdDelete.hide();
+      e.preventDefault();
+     });
+     }
+
+     
+
+
+     function eliminar( id){
+      confirmarEliminacion(id);
+      
+     };
+
+     //FIN FUNCION PARA ELIMINAR
+
 
      //INICIO BLOQUE METODOS PARA ACTUALIZAR UN CURSO
 
     //  método que carga el modal de editar con los datos del curso
-     function editar(id, nombre, des, tiempo){    
+     function cargarModal(id, nombre, des, tiempo){    
         myModal.show();
-   
         document.getElementById('nombre').value = nombre;  //pasamos los datos al modal
         document.getElementById('descripcion').value= des;
         document.getElementById('tiempo').value  = tiempo;
-        
-          actualizarCurso(id);
+         
+        actualizarCurso(id);
      };
      
      //Método que se encarga de actualizar
@@ -241,7 +337,7 @@
                 nombre: `${nombre}`,
                 descripcion:  `${descripcion}`, //los datos que se ocupan para insertar
                 tiempo:  `${tiempo}`,
-                usuario: "kasan"
+                usuario: "Jea "
             }
 
              fetch("https://paginas-web-cr.com/ApiPHP/apis/ActualizarCursos.php", 
