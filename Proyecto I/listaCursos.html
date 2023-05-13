@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Listar Datos</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <script src="./menu.js"></script>
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+</head>
+
+<body>
+
+
+  <header id="headerplace">
+
+  </header>
+  <main>
+
+    <div class="container">
+      <div class="row">
+        <div class="col align-self-start">
+
+          <blockquote class="blockquote">
+            <p>Welcome to courses view</p>
+          </blockquote>
+        </div>
+        <div class="col align-self-center">
+
+        </div>
+        <div class="col align-self-end ">
+          <!-- Botón que para crear curso -->
+          <button type="button" onClick="crearCurso()" class="btn btn-primary btn-md mt-4 mb-4 " data-bs-toggle="modal"
+            data-bs-target="#modalId">
+            Crear un nuevo curso
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-borderless table-primary align-middle">
+        <thead class="table-light">
+          <caption>
+            Tabla de Cursos
+          </caption>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Tiempo</th>
+            <th>Usuario</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="resultados" class="table-group-divider"></tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+
+
+    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+      aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+            <button type="button" onClick="cerrarModal()" class="btn-close" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formulario" action="">
+              
+              <div class="mb-3">
+                <label for="" class="form-label">Nombre</label>
+                <input type="text" name="" id="nombre" required class="form-control"
+                  placeholder="ingresar nombre del curso" aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Campo requerido</small>
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Descripción</label>
+                <input type="text" name="" id="descripcion" required class="form-control" placeholder="Descripción acá"
+                  aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Campo requerido</small>
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Tiempo</label>
+                <input type="text" name="" id="tiempo" required class="form-control" placeholder="Tiempo acá"
+                  aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Campo requerido</small>
+              </div>
+              <div class="mb-3">
+                <button type="reset" id="cancel-rest" class="btn btn-danger">Cancelar</button>
+                <button type="submit" id="" class="btn btn-primary">Guardar</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MODAL DE DATALLES -->
+    <div class="modal fade" id="modalDetalles" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+      role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tite">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form id="formDetalles" action="">
+              <div class="mb-3">
+                <label for="" class="form-label">ID</label>
+                <input type="text" name="" id="idD" readonly style="background-color: rgb(189, 187, 187);" class=" form-control" placeholder="" aria-describedby="helpId">
+
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Nombre</label>
+                <input type="text" name="" id="nameD" class="nombre form-control" placeholder=""
+                  aria-describedby="helpId">
+
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Descripción</label>
+                <input type="text" name="" id="descD" class="descripcion form-control" placeholder=""
+                  aria-describedby="helpId">
+
+              </div>
+
+              <div class="mb-3">
+                <label for="" class="form-label">Tiempo</label>
+                <input type="text" name="" id="timeD" class=" form-control" placeholder="" aria-describedby="helpId">
+
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Usuario</label>
+                <input type="text" name="" id="userD" class=" form-control" placeholder="" aria-describedby="helpId">
+
+              </div>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer id="footerPages" class="text-muted py-5">
+
+
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+      role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="modalcontent">
+
+            </div>
+            <form id="formConfirmacion" action="">
+              <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+              <button type="submit" class="btn btn-primary">Cancelar</button>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </footer>
+
+
+
+
+
+  <!-- Optional: Place to the bottom of scripts -->
+
+
+  <script src="menu.js"> </script>
+
+  <!-- {"id":"377","nombre":"hola leo","descripcion":"sdsd","tiempo":"asasa"}, -->
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
+
+  <script>
+    //declaracion de variabe
+    var contenidoTablaResultado = document.querySelector("#resultados");
+    var tipoFuncion;
+    function cargarDatos() {
+      fetch("https://paginas-web-cr.com/ApiPHP/apis/ListaCurso.php")
+        .then((respuesta) => respuesta.json()) //recibe los datos em formato json
+        .then((datosrespuesta) => {
+          setTable(datosrespuesta.data); //lo envio a la funcion de abajo
+          // console.log('Datos', datosrespuesta.data);
+        })
+        .catch(console.log);
+    }
+
+    function setTable(datos) {
+      console.log("Datos", datos);
+
+      for (const valor of datos) {
+        console.log("valor", valor);
+        contenidoTablaResultado.innerHTML += `
+          <tr class="table-primary">
+            <td scope="row">${valor.id}</td>
+            <td>${valor.nombre}</td>
+            <td>${valor.descripcion}</td>
+            <td>${valor.tiempo}</td>
+            <td>${valor.usuario}</td>
+            <td >
+   
+                  <button type="button" onClick="eliminar('${valor.id}')" class="btn btn-danger data-bs-toggle="modal" data-bs-target="#modalEliminar">
+                     Eliminar
+                  </button>
+                  ||
+                  <button type="button" onClick="cargarModal('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
+                    Editar
+                  </button>
+                   ||
+                  <button type="button" onClick="detalles('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}', '${valor.usuario}')" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDetalles">
+                   Detalles
+                  </button>
+
+                  
+              </td>
+
+          </tr>`;
+      }
+    };
+
+    // INICO BLOQUE DE DETALLES
+
+    const modalDetails = new bootstrap.Modal(document.getElementById('modalDetalles'));
+
+    function detalles(id, nombre, descripcion, tiempo, usuario) {
+      
+     document.getElementById('idD').value = id;
+     document.getElementById('nameD').value = nombre;
+     document.getElementById('descD').value = descripcion;
+     document.getElementById('timeD').value = tiempo;
+     document.getElementById('userD').value = usuario;
+
+    };
+
+
+
+    // FIN BLOQUE DETALLES
+
+
+    const myModal = new bootstrap.Modal(document.getElementById('modalId'));
+    //nuestra referencia al modal
+
+    function cerrarModal() {
+      myModal.hide();
+
+    }
+
+
+
+    //INICO FUNCIÓN PARA ELIMINAR
+    //  modal eliminar 
+    const mdDelete = new bootstrap.Modal(document.getElementById('modalEliminar'));
+
+    var formConfirmacion = document.getElementById('formConfirmacion');
+    var modalcontent = document.getElementById('modalcontent');
+
+    function confirmarEliminacion(id) {
+      mdDelete.show();
+      modalcontent.innerHTML = `<h6 > Desea eliminar el curso con id ${id} </h6>`;
+
+      formConfirmacion.addEventListener('reset', function (e) {
+        e.preventDefault();
+        var nombre = document.getElementById('nombre').value;
+
+        datosenviar = {
+          id: `${id}`
+        }
+
+        fetch("https://paginas-web-cr.com/ApiPHP/apis/BorrarCursos.php",
+          {
+            method: 'POST', //por que es el método que se usa para insertar
+            body: JSON.stringify(datosenviar)
+          }
+        ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
+          .then((datosrespuesta) => {
+            console.log('Datos, datosrespuesta');
+            window.location.href = "./listaCursos.html";
+            alert(`El curso con id ${id} se borró correctamente`);
+          })
+          .catch(error => console.error('Error:', error))
+          .then(response => console.log('Success:', response));
+
+      });
+
+      formConfirmacion.addEventListener('submit', function (e) {
+        alert('Cancelando...');
+        mdDelete.hide();
+        e.preventDefault();
+      });
+    }
+
+
+
+
+    function eliminar(id) {
+      confirmarEliminacion(id);
+
+    };
+
+    //FIN FUNCION PARA ELIMINAR
+
+
+    //INICIO BLOQUE METODOS PARA ACTUALIZAR UN CURSO
+
+    //  método que carga el modal de editar con los datos del curso
+    function cargarModal(id, nombre, des, tiempo) {
+      myModal.show();
+      document.getElementById('nombre').value = nombre;  //pasamos los datos al modal
+      document.getElementById('descripcion').value = des;
+      document.getElementById('tiempo').value = tiempo;
+
+      actualizarCurso(id);
+    };
+
+    //Método que se encarga de actualizar
+    function actualizarCurso(id) {
+
+      formulario.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var nombre = document.getElementById('nombre').value;
+        var descripcion = document.getElementById('descripcion').value;
+        var tiempo = document.getElementById('tiempo').value;
+
+
+        datosenviar = {
+          id: `${id}`,
+          nombre: `${nombre}`,
+          descripcion: `${descripcion}`, //los datos que se ocupan para insertar
+          tiempo: `${tiempo}`,
+          usuario: "Jea "
+        }
+
+        fetch("https://paginas-web-cr.com/ApiPHP/apis/ActualizarCursos.php",
+          {
+            method: 'POST', //por que es el método que se usa para insertar
+            body: JSON.stringify(datosenviar)
+          }
+        ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
+          .then((datosrespuesta) => {
+            console.log('Datos, datosrespuesta');
+            alert('Los datos se editaron correctamente');
+            window.location.href = "./listaCursos.html";
+
+          })
+          .catch(error => console.error('Error:', error))
+          .then(response => console.log('Success:', response));
+
+      });
+
+    };
+
+    //FIN BLOQUE METODOS PARA ACTUALIZAR UN CURSO
+
+    //  Funciones para crear curso
+    var formulario = document.getElementById('formulario');
+
+
+    function limpiarCampos() {
+      document.getElementById('nombre').value = "";
+      document.getElementById('descripcion').value = "";
+      document.getElementById('tiempo').value = "";
+    };
+
+    formulario.addEventListener('reset', function (e) {
+      alert('Cancelando, y volviendo al index');
+      limpiarCampos();
+      window.location.href = "./listaCursos.html";
+    });
+
+
+    function crearCurso() {
+      formulario.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var nombre = document.getElementById('nombre').value;
+        var descripcion = document.getElementById('descripcion').value;
+        var tiempo = document.getElementById('tiempo').value;
+
+        var datosenviar = {
+          nombre: `${nombre}`,
+          descripcion: `${descripcion}`, //los datos que se ocupan para insertar
+          tiempo: `${tiempo}`,
+          usuario: "SS"
+        }
+        console.log(datosenviar);
+
+        fetch("https://paginas-web-cr.com/ApiPHP/apis/InsertarCursos.php",
+          {
+            method: 'POST', //por que es el método que se usa para insertar
+            body: JSON.stringify(datosenviar)
+          }
+        ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
+          .then((datosrespuesta) => {
+            console.log('Datos, datosrespuesta');
+            alert('Los datos se guardaron correctamente');
+            window.location.href = "./listaCursos.html";
+          })
+          .catch(error => console.error('Error:', error))
+          .then(response => console.log('Success:', response));
+
+      });
+    };
+
+
+    cargarDatos();
+  </script>
+</body>
+
+</html>
