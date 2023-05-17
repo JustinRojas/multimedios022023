@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <script src="./menu.js"></script>
+ 
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
@@ -127,7 +127,7 @@
             <form id="formDetalles" action="">
               <div class="mb-3">
                 <label for="" class="form-label">ID</label>
-                <input type="text" name="" id="idD" readonly style="background-color: rgb(189, 187, 187);" class=" form-control" placeholder="" aria-describedby="helpId">
+                <input type="text" name="" id="idD" readonl y style="background-color: rgb(189, 187, 187);" class=" form-control" placeholder="" aria-describedby="helpId">
 
               </div>
               <div class="mb-3">
@@ -248,15 +248,15 @@
             <td>${valor.usuario}</td>
             <td >
    
-                  <button type="button" onClick="eliminar('${valor.id}')" class="btn btn-danger data-bs-toggle="modal" data-bs-target="#modalEliminar">
+                  <button type="button" onClick="eliminar('${valor.id}')" class="btn btn-danger mb-1 btn-sm" data-bs-toggle="modal" data-bs-target="#modalEliminar">
                      Eliminar
                   </button>
                   ||
-                  <button type="button" onClick="cargarModal('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
+                  <button type="button" onClick="cargarModal('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}')" class="btn btn-primary  mb-1 btn-sm" data-bs-toggle="modal" data-bs-target="#modalId">
                     Editar
                   </button>
                    ||
-                  <button type="button" onClick="detalles('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}', '${valor.usuario}')" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDetalles">
+                  <button type="button" onClick="detalles('${valor.id}','${valor.nombre}', '${valor.descripcion}', '${valor.tiempo}', '${valor.usuario}')" class=" mb-1 btn-sm btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDetalles">
                    Detalles
                   </button>
 

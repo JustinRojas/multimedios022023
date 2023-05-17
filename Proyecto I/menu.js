@@ -37,7 +37,7 @@ function crearFooter(){
     footerPages.innerHTML += `
     <div class="container">
     <p class="float-end mb-1">
-      <a href="./listaCursos.html">Back to top</a>
+      <a >Proyecto de Javascript</a>
     </p>
     <p class="mb-1">Jeaustin Rojas &copy; Bootstrap</p>
   </div>`

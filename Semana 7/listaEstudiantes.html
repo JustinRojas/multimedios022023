@@ -59,10 +59,17 @@
             <tr>
               <th>ID</th>
               <th>Nombre</th>
+              <th>Apellido Paterno</th>
+              <th>Apellido Materno</th>
               <th>Cedula</th>
+              <th>Fecha nacimiento</th>
               <th>Correo electronico</th>
               <th>Telefono</th>
+              <th>Telefono celular</th>
+              <th>Id carrera</th>
               <th>Nacionalidad</th>
+              <th>Usuario</th>
+
             </tr>
           </thead>
           <tbody id="resultados" class="table-group-divider"></tbody>
@@ -113,13 +120,21 @@
           <tr class="table-info">
             <td scope="row">${valor.id}</td>
             <td>${valor.nombre}</td>
+            <td>${valor.apellidopaterno}</td>
+            <td>${valor.apellidomaterno}</td>
             <td>${valor.cedula}</td>
+            <td>${valor.fechanacimiento}</td>
             <td>${valor.correoelectronico}</td>
             <td>${valor.telefono}</td>
+            <td>${valor.telefonocelular}</td>
+            <td>${valor.idCarreras}</td>
             <td>${valor.nacionalidad}</td>
+            <td>${valor.usuario}</td>
           </tr>`;
       }
     }
+
+    
     cargarDatos();
   </script>
 </body>
