@@ -10,168 +10,192 @@
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <div class="container">
-    <header id="headerplace">
-      <!-- place navbar here -->
+<body id="body">
 
-    </header>
-    <main>
+  <header id="headerplace">
+    <!-- place navbar here -->
 
-      <div class="container">
-        <div class="row">
-          <div class="col align-self-start">
+  </header>
+  <main>
+    
 
-            <blockquote class="blockquote">
-              <p>Welcome to groups view</p>
-            </blockquote>
+  
+    <div class=" modal fade " id="alerta" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="alerta modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="ms modal-content">
+          
+          <div id="liveAlertPlaceholder" class="modal-body">
+            
           </div>
-          <div class="col align-self-center">
-
-          </div>
-          <div class="col align-self-end ">
-            <!-- Botón que para crear curso -->
-            <button type="button" onClick="crearGrupo()" class="btn btn-primary btn-md mt-4 mb-4 "
-              data-bs-toggle="modal" data-bs-target="#modalId">
-              Crear un nuevo grupo
-            </button>
-          </div>
+         
         </div>
       </div>
+    </div>
+    
+    
+    <!-- Optional: Place to the bottom of scripts -->
+    
+      
+    
+ 
 
+    <div class="container">
+      <div class="row">
+        <div class="col align-self-start">
 
+          <blockquote class="blockquote">
+            <p id="frase">Welcome to groups view</p>
+          </blockquote>
+        </div>
+        <div class="col align-self-center">
 
-      <div class="table-responsive">
-        <table class="table table-striped table-hover table-borderless table-success align-middle">
-          <thead class="table-light">
-            <caption>
-              Table Name
-            </caption>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="resultados" class="table-group-divider"></tbody>
-          <tfoot></tfoot>
-        </table>
-      </div>
-    </main>
-
-
-    <!-- MODAL DE CREAR Y EDITAR -->
-    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-      aria-labelledby="modalTitleId" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTitleId">Modal title</h5>
-            <button type="button" onClick="cerrarModal()" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="formulario" action="">
-
-              <div id="div-id" class="mb-3">
-
-
-              </div>
-
-              <div class="mb-3">
-                <label for="" class="form-label">Nombre</label>
-                <input type="text" name="" id="nombre" required class="form-control"
-                  placeholder="ingresar nombre del curso" aria-describedby="helpId">
-                <small id="helpId" class="text-muted">Campo requerido</small>
-              </div>
-
-
-              <div class="mb-3">
-                <button type="reset" id="cancel-rest" class="btn btn-danger">Cancelar</button>
-                <button type="submit" id="" class="btn btn-primary">Guardar</button>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-          </div>
+        </div>
+        <div class="col align-self-end ">
+          <!-- Botón que para crear curso -->
+          <button type="button" onClick="crearGrupo()" class="btn btn-primary btn-md mt-4 mb-4 " data-bs-toggle="modal"
+            data-bs-target="#modalId">
+            Crear un nuevo grupo
+          </button>
         </div>
       </div>
     </div>
 
 
-    <!-- MODAL DE DETALLES -->
-    <div class="modal fade" id="modalDetalles" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-borderless table-success align-middle">
+        <thead class="table-light">
+          <caption>
+            Table Name
+          </caption>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="resultados" class="table-group-divider"></tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+  </main>
+
+
+  <!-- MODAL DE CREAR Y EDITAR -->
+  <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+    aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+          <button type="button" onClick="cerrarModal()" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formulario" action="">
+
+            <div id="div-id" class="mb-3">
+
+
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label">Nombre</label>
+              <input type="text" name="" id="nombre" required class="form-control"
+                placeholder="ingresar nombre del curso" aria-describedby="helpId">
+              <small id="helpId" class="text-muted">Campo requerido</small>
+            </div>
+
+
+            <div class="mb-3">
+              <button type="reset" id="cancel-rest" class="btn btn-danger">Cancelar</button>
+              <button type="submit" id="" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL DE DETALLES -->
+  <div class="modal fade" id="modalDetalles" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tite">Detalles estudiante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form id="formDetalles" action="">
+            <div class="mb-3">
+              <label for="" class="form-label">Id</label>
+              <input type="text" name="" id="idEs" readonly style="background-color: rgb(184, 184, 184);" required
+                class="form-control" placeholder="ingresar nombre del curso" aria-describedby="helpId">
+
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Nombre</label>
+              <input type="text" name="" id="nombreEs" readonly required class="form-control"
+                placeholder="ingresar nombre del curso" aria-describedby="helpId">
+
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer id="footerPages" class="text-muted py-5">
+    <!-- place footer here -->
+
+
+
+    <div class="modal fade" id="modalEliminar" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
       role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="tite">Detalles estudiante</h5>
+            <h5 class="modal-title" id="modalTitleId">Modal eliminar</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <div id="modalcontent">
 
-            <form id="formDetalles" action="">
-              <div class="mb-3">
-                <label for="" class="form-label">Id</label>
-                <input type="text" name="" id="idEs" readonly style="background-color: rgb(184, 184, 184);" required
-                  class="form-control" placeholder="ingresar nombre del curso" aria-describedby="helpId">
-
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">Nombre</label>
-                <input type="text" name="" id="nombreEs" readonly required class="form-control"
-                  placeholder="ingresar nombre del curso" aria-describedby="helpId">
-
-              </div>
-
+            </div>
+            <form id="formConfirmacion" action="">
+              <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+              <button type="submit" class="btn btn-primary">Cancelar</button>
             </form>
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
           </div>
         </div>
       </div>
     </div>
 
-
-    <footer id="footerPages" class="text-muted py-5">
-      <!-- place footer here -->
-
-
-
-      <div class="modal fade" id="modalEliminar" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalTitleId">Modal eliminar</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div id="modalcontent">
-
-              </div>
-              <form id="formConfirmacion" action="">
-                <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
-                <button type="submit" class="btn btn-primary">Cancelar</button>
-              </form>
-
-            </div>
-            <div class="modal-footer">
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </footer>
-  </div>
+  </footer>
 
 
   <script src="menu.js"> </script>
@@ -193,12 +217,12 @@
 
     const modalDetails = new bootstrap.Modal(document.getElementById('modalDetalles'));
 
-        function detalles(id, nombre) {
+    function detalles(id, nombre) {
 
-            document.getElementById('idEs').value = id;
-            document.getElementById('nombreEs').value = nombre;
-           
-        };
+      document.getElementById('idEs').value = id;
+      document.getElementById('nombreEs').value = nombre;
+
+    };
     // FIN BLOQUE DE DETALLLES
 
     // INICIO BLOQUE DE EDITAR
@@ -222,6 +246,11 @@
     }
 
     function actualizarGrupo(id) {
+      formulario.addEventListener('reset', function (e) {
+        e.preventDefault();
+
+        myModal.hide();
+      })
 
       formulario.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -244,17 +273,34 @@
         ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
           .then((datosrespuesta) => {
             console.log('Datos, datosrespuesta');
-            alert('Los datos se guardaron correctamente');
-            window.location.href = "./listaGrupos.html";
-
-
+            myModal.hide();
+            
           })
           .catch(error => console.error('Error:', error))
-          .then(response => console.log('Success:', response));
+          .then(response =>  alerts('El grupo se actualizó correctamente', 'success'));
 
       });
 
     };
+
+    var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+    const alerta = new bootstrap.Modal(document.getElementById('alerta'))
+   
+    // FUNCION PARA MOESTRAR EL ALERT
+    
+    function alerts(message, type) {  
+      var wrapper = document.createElement('div')
+      wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" onClick="cargar()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+      alertPlaceholder.append(wrapper)
+      
+      alerta.show();
+
+    }
+
+    function cargar() {
+      location.reload();
+    }
+
 
     // FIN BLOQUE DE EDITAR
 
@@ -264,7 +310,9 @@
 
     var formConfirmacion = document.getElementById('formConfirmacion');
     var modalcontent = document.getElementById('modalcontent');
+
     function eliminar(id, nombre) {
+
       confirmarEliminacion(id, nombre);
 
     };
@@ -289,21 +337,22 @@
         ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
           .then((datosrespuesta) => {
             console.log('Datos, datosrespuesta');
-            window.location.href = "./listaGrupos.html";
-            alert(`El grupo con id ${id} se borró correctamente`);
-            alerta('El grupo con id ${id} se borró correctamente', 'success');
 
           })
           .catch(error => console.error('Error:', error))
-          .then(response => console.log('Success:', response));
+          .then(response => alerts('El grupo se borró', 'danger'));
+
 
       });
+
 
       formConfirmacion.addEventListener('submit', function (e) {
-        alert('Cancelando...');
+        alerts('Cancelando...', 'warning');
         mdDelete.hide();
+
         e.preventDefault();
       });
+
     }
 
 
@@ -321,6 +370,13 @@
     };
     function crearGrupo() {
       limpiarCampos();
+
+      formulario.addEventListener('reset', function (e) {
+        e.preventDefault();
+        alerts('Cancelando...', 'warning');
+        myModal.hide();
+      })
+
       formulario.addEventListener('submit', function (e) {
         e.preventDefault();
         var nombre = document.getElementById('nombre').value;
@@ -339,11 +395,10 @@
         ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
           .then((datosrespuesta) => {
             console.log('Datos, datosrespuesta');
-            alert('Los datos se guardaron correctamente');
-            window.location.href = "./listaGrupos.html";
+
           })
-          .catch(error => console.error('Error:', error))
-          .then(response => console.log('Success:', response));
+          .catch(error => alerts('Ocurrió un error', 'danger'))
+          .then(response =>  myModal.hide(), location.reload());
 
       });
 
@@ -380,15 +435,15 @@
 
             <td class="col-md-4"> 
                   <button type="button" onClick="eliminar('${valor.id}', '${valor.nombre}')" class=" mb-1 btn-sm btn btn-danger data-bs-toggle="modal" data-bs-target="#modalEliminar">
-                     Eliminar
+                    <i class="fa-solid fa-trash"></i>
                   </button>
                   ||
                   <button type="button" onClick="cargarModal('${valor.id}','${valor.nombre}')" class="  mb-1 btn-sm btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
-                    Editar
+                    <i class="fa-solid fa-pen-to-square"></i>
                   </button>
                   ||
                   <button type="button" onClick="detalles('${valor.id}','${valor.nombre}')" class="  mb-1 btn-sm btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDetalles">
-                   Detalles
+                    <i style="color:white" class="fa-solid fa-circle-info"></i>
                   </button>
 
               </td>

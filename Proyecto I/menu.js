@@ -10,6 +10,10 @@ headerplace.innerHTML += `<nav class="navbar navbar-expand-sm navbar-light bg-li
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavId">
     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link active" href="listaCursos.html" aria-current="page">Cursos <span
             class="visually-hidden">(current)</span></a>
@@ -20,9 +24,7 @@ headerplace.innerHTML += `<nav class="navbar navbar-expand-sm navbar-light bg-li
       <li class="nav-item">
         <a class="nav-link" href="listaProfesores.html">Profesores</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="listaUsuarios.html">Usuarios</a>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="listaGrupos.html">Grupos</a>
       </li>

@@ -10,6 +10,11 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -25,7 +30,7 @@
                 <div class="col align-self-start">
 
                     <blockquote class="blockquote">
-                        <p>Welcome to students view</p>
+                        <p id="frase">Welcome to students view</p>
                     </blockquote>
                 </div>
                 <div class="col align-self-center">
@@ -385,19 +390,19 @@
             <td class="col-md-1">
    
                   <button type="button" onClick="eliminar('${valor.id}', '${valor.nombre}')" class=" mb-1 btn-sm btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar">
-                     Eliminar
+                    <i class="fa-solid fa-trash"></i>
                   </button>
                   
                   <button type="button" onClick="cargarModal('${valor.id}','${valor.nombre}', '${valor.apellidopaterno}', 
                   '${valor.apellidomaterno}', '${valor.cedula}', '${valor.fechanacimiento}', '${valor.correoelectronico}',
                   '${valor.telefono}','${valor.telefonocelular}','${valor.idCarreras}', '${valor.nacionalidad}', '${valor.sexo}', '${valor.direccion}' )" class="  mb-1 btn-sm btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
-                    Editar
+                  <i class="fa-solid fa-pen-to-square"></i>
                   </button>
                    
                   <button type="button" onClick="detalles('${valor.id}','${valor.nombre}', '${valor.apellidopaterno}', 
                   '${valor.apellidomaterno}', '${valor.cedula}', '${valor.fechanacimiento}', '${valor.correoelectronico}',
                   '${valor.telefono}','${valor.telefonocelular}','${valor.idCarreras}', '${valor.nacionalidad}', '${valor.sexo}', '${valor.direccion}')" class="  mb-1 btn-sm btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDetalles">
-                   Detalles
+                  <i style="color:white" class="fa-solid fa-circle-info"></i>
                   </button>
 
                   
