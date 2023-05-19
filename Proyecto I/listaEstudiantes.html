@@ -25,6 +25,19 @@
     </header>
     <main>
 
+        <div class=" modal fade " id="alerta" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="alerta modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                <div class="ms modal-content">
+
+                    <div id="liveAlertPlaceholder" class="modal-body">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="row">
                 <div class="col align-self-start">
@@ -355,6 +368,28 @@
         crossorigin="anonymous"></script>
 
     <script>
+
+
+        var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+        const alerta = new bootstrap.Modal(document.getElementById('alerta'))
+
+        // FUNCION PARA MOESTRAR EL ALERT
+
+        function alerts(message, type) {
+            var wrapper = document.createElement('div')
+            wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" onClick="cargar()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+            alertPlaceholder.append(wrapper)
+
+            alerta.show();
+
+        }
+        function cargar() {
+            location.reload();
+        }
+
+
+
+
         //declaracion de variabe
         var contenidoTablaResultado = document.querySelector("#resultados");
         var tipoFuncion;
@@ -471,17 +506,15 @@
                 ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
                     .then((datosrespuesta) => {
                         console.log('Datos, datosrespuesta');
-                        window.location.href = "./listaEstudiantes.html";
-                        alert(`El estudiante con id ${id} se borró correctamente`);
                     })
                     .catch(error => console.error('Error:', error))
-                    .then(response => console.log('Success:', response));
+                    .then(response => alerts('Eliminando...', 'danger'));
 
             });
 
             formConfirmacion.addEventListener('submit', function (e) {
-                alert('Cancelando...');
                 mdDelete.hide();
+                alerts('Cancelando...', 'warning');
                 e.preventDefault();
             });
         }
@@ -571,14 +604,10 @@
                     }
                 ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
                     .then((datosrespuesta) => {
-                        console.log('Datos, datosrespuesta');
-                        alert('Los datos se guardaron correctamente');
-                        window.location.href = "./listaEstudiantes.html";
-
-
+                        myModal.hide();
                     })
                     .catch(error => console.error('Error:', error))
-                    .then(response => console.log('Success:', response));
+                    .then(response => alerts('Actualizando...', 'success'));
 
             });
 
@@ -610,9 +639,9 @@
         };
 
         formulario.addEventListener('reset', function (e) {
-            alert('Cancelando, y volviendo al index');
+            alerts('Cancelando', 'warning');
             limpiarCampos();
-            window.location.href = "./listaEstudiantes.html";
+          myModal.hide();
         });
 
 
@@ -663,11 +692,10 @@
                 ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
                     .then((datosrespuesta) => {
                         console.log('Datos, datosrespuesta');
-                        alert('Los datos se guardaron correctamente');
-                        window.location.href = "./listaEstudiantes.html";
+                        myModal.hide();
                     })
                     .catch(error => console.error('Error:', error))
-                    .then(response => console.log('Success:', response));
+                    .then(response => alerts('Creando...', 'success'));
 
             });
 

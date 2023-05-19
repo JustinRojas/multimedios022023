@@ -10,10 +10,10 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,6 +21,25 @@
         <!-- place navbar here -->
     </header>
     <main>
+
+        <div class=" modal fade " id="alerta" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="alerta modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                <div class="ms modal-content">
+
+                    <div id="liveAlertPlaceholder" class="modal-body">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
         <div class="container">
             <div class="row">
                 <div class="col align-self-start">
@@ -42,36 +61,36 @@
             </div>
         </div>
 
-        
-            <div class="  table-responsive">
-                <table class="table table-striped table-hover table-borderless table-success align-middle">
-                    <thead class="table-light">
-                        <caption>
-                            Tabla de profesores
-                        </caption>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido Paterno</th>
-                            <th>Apellido Materno</th>
-                            <th>Cédula</th>
-                            <th>Fecha nacimiento</th>
-                            <th>Correo electronico</th>
-                            <th>Teléfono</th>
-                            <th>Teléfono celular</th>
-                            <th>Id carrera</th>
-                            <th>Nacionalidad</th>
-                            <th>Usuario</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultados" class="table-group-divider"></tbody>
-                    <tfoot></tfoot>
-                </table>
-            </div>
-        
+
+        <div class="  table-responsive">
+            <table class="table table-striped table-hover table-borderless table-success align-middle">
+                <thead class="table-light">
+                    <caption>
+                        Tabla de profesores
+                    </caption>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Cédula</th>
+                        <th>Fecha nacimiento</th>
+                        <th>Correo electronico</th>
+                        <th>Teléfono</th>
+                        <th>Teléfono celular</th>
+                        <th>Id carrera</th>
+                        <th>Nacionalidad</th>
+                        <th>Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="resultados" class="table-group-divider"></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+
         <!-- Tabla profesores -->
-        
+
 
         <!-- MODAL DE EDITAR Y AGREGAR -->
         <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -337,6 +356,24 @@
     <script>
 
 
+        var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+        const alerta = new bootstrap.Modal(document.getElementById('alerta'))
+
+        // FUNCION PARA MOESTRAR EL ALERT
+
+        function alerts(message, type) {
+            var wrapper = document.createElement('div')
+            wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" onClick="cargar()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+            alertPlaceholder.append(wrapper)
+
+            alerta.show();
+
+        } 
+        function cargar() {
+            location.reload();
+        }
+        // ----------------------------------------------------------------------------------------
+       
         // INICIO BLOQUE ELIMINAR
         const mdDelete = new bootstrap.Modal(document.getElementById('modalEliminar'));
 
@@ -367,18 +404,19 @@
                 ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
                     .then((datosrespuesta) => {
                         console.log('Datos, datosrespuesta');
-                        alert(`El profesor con id ${id} se borró correctamente`);
-                        window.location.href = "./listaProfesores.html";
+
+
                     })
                     .catch(error => console.error('Error:', error))
-                    .then(response => console.log('Success:', response));
+                    .then(response => alerts('Eliminando...', 'danger'));
 
             });
 
             formConfirmacion.addEventListener('submit', function (e) {
-                alert('Cancelando...');
-                mdDelete.hide();
                 e.preventDefault();
+                alerts('Cancelando...', 'warning');
+                mdDelete.hide();
+
             });
         }
 
@@ -437,6 +475,14 @@
 
         function crearProfesor() {
             limpiarCampos();
+            formulario.addEventListener('reset', function (e) {
+                e.preventDefault();
+                myModal.hide();
+                alerts('Cancelando...', 'warning');
+            })
+
+
+
             formulario.addEventListener('submit', function (e) {
                 e.preventDefault();
 
@@ -482,11 +528,10 @@
                 ).then((respuesta) => respuesta.json().ok)             //recibe los datos em formato json
                     .then((datosrespuesta) => {
                         console.log('Datos, datosrespuesta');
-                        alert('Los datos se guardaron correctamente');
-                        window.location.href = "./listaProfesores.html";
+                        myModal.hide();
                     })
                     .catch(error => console.error('Error:', error))
-                    .then(response => console.log('Success:', response));
+                    .then(response => alerts('Creando...', 'success'));
 
             });
 
@@ -535,7 +580,7 @@
         //Método que se encarga de actualizar
         function actualizarEstudiante(id) {
 
-            formulario.addEventListener('reset', function (e){
+            formulario.addEventListener('reset', function (e) {
                 e.preventDefault();
 
                 myModal.hide();
@@ -583,20 +628,22 @@
                         method: 'POST', //por que es el método que se usa para insertar
                         body: JSON.stringify(datosenviar)
                     }
-                ).then((respuesta) => respuesta.json().ok)                       
+                ).then((respuesta) => respuesta.json().ok)
                     .then((datosrespuesta) => {
-                        
-                        alert('Los datos se guardaron correctamente');
-                        window.location.href = "./listaProfesores.html";
-                        alerta();
+                        myModal.hide();
 
                     })
                     .catch(error => console.error('Error:', error))
-                    .then(response => console.log('Success:', response));
+                    .then(response => alerts('Actualizando...', 'success'));
 
             });
 
-            
+            formulario.addEventListener('reset', function (e) {
+                e.preventDefault();
+                myModal.hide();
+                alerts('Cancelando...', 'warning');
+            })
+
 
         };
 
@@ -662,7 +709,7 @@
             }
         };
 
-       
+
         cargarDatos();
     </script>
 </body>
