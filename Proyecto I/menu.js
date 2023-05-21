@@ -15,7 +15,7 @@ headerplace.innerHTML += `<nav class="navbar navbar-expand-sm navbar-light bg-li
         <a class="nav-link" href="index.html">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="listaCursos.html" aria-current="page">Cursos <span
+        <a class="nav-link" href="listaCursos.html" aria-current="page">Cursos <span
             class="visually-hidden">(current)</span></a>
       </li>
       <li class="nav-item">
