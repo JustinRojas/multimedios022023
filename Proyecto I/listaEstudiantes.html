@@ -101,8 +101,10 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                       
                         <form id="formulario" action="">
 
+                           
                             <div id="div-id" class="mb-3">
 
 
@@ -110,8 +112,8 @@
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="" id="nombre" required class="form-control"
-                                    placeholder="ingresar nombre del curso" aria-describedby="helpId">
+                                <input type="text" name="" id="nombre" required class="form-control" placeholder=""
+                                    aria-describedby="helpId">
                                 <small id="helpId" class="text-muted">Campo requerido</small>
                             </div>
 
@@ -131,15 +133,22 @@
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Sexo</label>
-                                <input type="text" name="" id="sexo" required class="form-control" placeholder=""
-                                    aria-describedby="helpId">
+
+                                <select class="form-select form-select-md" required name="select" id="sexo">
+                                    <option value=""> Seleccione una opción</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino"> Femenino</option>
+                                    <option value="Indefinido"> Indefenido</option>
+                                </select>
+
                                 <small id="helpId" class="text-muted">Campo requerido</small>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Cédula</label>
-                                <input type="text" name="" id="cedula" required class="form-control" placeholder=""
+                                <input type="text" name="" id="cedula" onkeyup="this.value=validacion(this.value)"
+                                    required class="form-control" placeholder="Ejemplo: 6-0464-0262"
                                     aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
+                                <small id="helpId" class="text-muted">Formato #-0###-0###</small>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Fecha nacimiento</label>
@@ -149,13 +158,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Correo</label>
-                                <input type="text" name="" id="correo" required class="form-control" placeholder=""
+                                <input type="email" name="" id="correo" required class="form-control" placeholder=""
                                     aria-describedby="helpId">
                                 <small id="helpId" class="text-muted">Campo requerido</small>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Teléfono</label>
-                                <input type="text" name="" id="telefono" required class="form-control" placeholder=""
+                                <input type="number" name="" id="telefono" required class="form-control" placeholder=""
                                     aria-describedby="helpId">
                                 <small id="helpId" class="text-muted">Campo requerido</small>
                             </div>
@@ -167,15 +176,16 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Teléfono celular</label>
-                                <input type="text" name="" id="telefonoCelular" required class="form-control"
+                                <input type="number" name="" id="telefonoCelular" required class="form-control"
                                     placeholder="" aria-describedby="helpId">
                                 <small id="helpId" class="text-muted">Campo requerido</small>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Id carrera</label>
-                                <!-- Hay que hacerlo con select y con los datos de la tabla grupos -->
-                                <input type="text" name="" id="idCarrera" required class="form-control" placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
+                                <label for="" class="form-label">Grupo </label>
+                                <select class="form-select form-select-md" required name="" id="idCarrera">
+                                    <option value=""> Seleccione un grupo</option>
+                                </select>
+
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Nacionalidad</label>
@@ -370,6 +380,30 @@
     <script>
 
 
+        var contenidoSelect = document.getElementById("idCarrera");
+
+        function cargarGrupos() {
+            fetch("https://paginas-web-cr.com/ApiPHP/apis/ListaGrupo.php")
+                .then((respuesta) => respuesta.json()) //recibe los datos em formato json
+                .then((datosrespuesta) => {
+                    set(datosrespuesta.data); //lo envio a la funcion de abajo
+                    // console.log('Datos', datosrespuesta.data);
+                })
+                .catch(console.log);
+        }
+
+        function set(datos) {
+
+            console.log("Datos", datos);
+
+            for (const valor of datos) {
+                console.log("valor", valor);
+                contenidoSelect.innerHTML +=
+                    `<option value="${valor.id}"> ${valor.id}  ${valor.nombre} </option> `;
+            }
+        }
+
+
         var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
         const alerta = new bootstrap.Modal(document.getElementById('alerta'))
 
@@ -387,8 +421,15 @@
             location.reload();
         }
 
-
-
+        function validacion(string) {//Solo numeros
+            var out = '';
+            var filtro = '1234567890-';
+            for (var i = 0; i < string.length; i++)
+                if (filtro.indexOf(string.charAt(i)) != -1)
+                    //Se añaden a la salida los caracteres validos
+                    out += string.charAt(i);
+            return out;
+        }
 
         //declaracion de variabe
         var contenidoTablaResultado = document.querySelector("#resultados");
@@ -517,7 +558,13 @@
                 alerts('Cancelando...', 'warning');
                 e.preventDefault();
             });
-        }
+        };
+
+
+        // Cargar datos de los cursos
+
+
+
 
         //FIN BLOQUE DE ELIMINAR
 
@@ -559,7 +606,7 @@
 
         //Método que se encarga de actualizar
         function actualizarEstudiante(id) {
-
+            cargarGrupos();
             formulario.addEventListener('submit', function (e) {
                 e.preventDefault();
 
@@ -641,12 +688,13 @@
         formulario.addEventListener('reset', function (e) {
             alerts('Cancelando', 'warning');
             limpiarCampos();
-          myModal.hide();
+            myModal.hide();
         });
 
 
         function crearEstudiante() {
             limpiarCampos();
+            cargarGrupos();
             formulario.addEventListener('submit', function (e) {
                 e.preventDefault();
 

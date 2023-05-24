@@ -105,91 +105,102 @@
                     <div class="modal-body">
                         <form id="formulario" action="">
 
-                            <div id="div-id" class="mb-3">
+                            <form id="formulario" action="">
 
 
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Nombre</label>
-                                <input type="text" name="" id="nombre" required class="form-control"
-                                    placeholder="ingresar nombre del curso" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Apellido paterno</label>
-                                <input type="text" name="" id="apellidoPaterno" required class="form-control"
-                                    placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Apellido materno</label>
-                                <input type="text" name="" id="apellidoMaterno" required class="form-control"
-                                    placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
+                                <div id="div-id" class="mb-3">
 
 
-                            <div class="mb-3">
-                                <label for="" class="form-label">Sexo</label>
-                                <input type="text" name="" id="sexo" required class="form-control" placeholder=""
-                                    aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Cédula</label>
-                                <input type="text" name="" id="cedula" required class="form-control" placeholder=""
-                                    aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Fecha nacimiento</label>
-                                <input type="date" name="" id="fechaNacimiento" required class="form-control"
-                                    placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Correo</label>
-                                <input type="text" name="" id="correo" required class="form-control" placeholder=""
-                                    aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Teléfono</label>
-                                <input type="text" name="" id="telefono" required class="form-control" placeholder=""
-                                    aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Dirección</label>
-                                <input type="text" name="" id="direccion" required class="form-control" placeholder=""
-                                    aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Teléfono celular</label>
-                                <input type="text" name="" id="telefonoCelular" required class="form-control"
-                                    placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Id carrera</label>
-                                <input type="text" name="" id="idCarrera" required class="form-control" placeholder=""
-                                    aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Nacionalidad</label>
-                                <input type="text" name="" id="nacionalidad" required class="form-control"
-                                    placeholder="" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Campo requerido</small>
-                            </div>
-                            <div class="mb-3">
-                                <button type="reset" id="cancel-rest" class="btn btn-danger">Cancelar</button>
-                                <button type="submit" id="" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Nombre</label>
+                                    <input type="text" name="" id="nombre" required class="form-control" placeholder=""
+                                        aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Apellido paterno</label>
+                                    <input type="text" name="" id="apellidoPaterno" required class="form-control"
+                                        placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Apellido materno</label>
+                                    <input type="text" name="" id="apellidoMaterno" required class="form-control"
+                                        placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Sexo</label>
+
+                                    <select class="form-select form-select-md" required name="select" id="sexo">
+                                        <option value=""> Seleccione una opción</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino"> Femenino</option>
+                                        <option value="Indefinido"> Indefenido</option>
+                                    </select>
+
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Cédula</label>
+                                    <input type="text" name="" id="cedula" onkeyup="this.value=validacion(this.value)"
+                                        required class="form-control" placeholder="Ejemplo: 6-0464-0262"
+                                        aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Formato #-0###-0###</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Fecha nacimiento</label>
+                                    <input type="date" name="" id="fechaNacimiento" required class="form-control"
+                                        placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Correo</label>
+                                    <input type="email" name="" id="correo" required class="form-control" placeholder=""
+                                        aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Teléfono</label>
+                                    <input type="number" name="" id="telefono" required class="form-control"
+                                        placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Dirección</label>
+                                    <input type="text" name="" id="direccion" required class="form-control"
+                                        placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Teléfono celular</label>
+                                    <input type="number" name="" id="telefonoCelular" required class="form-control"
+                                        placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Grupo </label>
+                                    <select class="form-select form-select-md" required name="" id="idCarrera">
+                                        <option value=""> Seleccione un grupo</option>
+                                    </select>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Nacionalidad</label>
+                                    <input type="text" name="" id="nacionalidad" required class="form-control"
+                                        placeholder="" aria-describedby="helpId">
+                                    <small id="helpId" class="text-muted">Campo requerido</small>
+                                </div>
+                                <div class="mb-3">
+                                    <button type="reset" id="cancel-rest" class="btn btn-danger">Cancelar</button>
+                                    <button type="submit" id="" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -356,6 +367,30 @@
     <script>
 
 
+
+        var contenidoSelect = document.getElementById("idCarrera");
+
+        function cargarGrupos() {
+            fetch("https://paginas-web-cr.com/ApiPHP/apis/ListaGrupo.php")
+                .then((respuesta) => respuesta.json()) //recibe los datos em formato json
+                .then((datosrespuesta) => {
+                    set(datosrespuesta.data); //lo envio a la funcion de abajo
+                    // console.log('Datos', datosrespuesta.data);
+                })
+                .catch(console.log);
+        }
+
+        function set(datos) {
+
+            console.log("Datos", datos);
+
+            for (const valor of datos) {
+                console.log("valor", valor);
+                contenidoSelect.innerHTML +=
+                    `<option value="${valor.id}"> ${valor.id}  ${valor.nombre} </option> `;
+            }
+        }
+
         var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
         const alerta = new bootstrap.Modal(document.getElementById('alerta'))
 
@@ -368,12 +403,12 @@
 
             alerta.show();
 
-        } 
+        }
         function cargar() {
             location.reload();
         }
         // ----------------------------------------------------------------------------------------
-       
+
         // INICIO BLOQUE ELIMINAR
         const mdDelete = new bootstrap.Modal(document.getElementById('modalEliminar'));
 
@@ -475,6 +510,7 @@
 
         function crearProfesor() {
             limpiarCampos();
+            cargarGrupos();
             formulario.addEventListener('reset', function (e) {
                 e.preventDefault();
                 myModal.hide();
@@ -579,7 +615,7 @@
 
         //Método que se encarga de actualizar
         function actualizarEstudiante(id) {
-
+            cargarGrupos();
             formulario.addEventListener('reset', function (e) {
                 e.preventDefault();
 
