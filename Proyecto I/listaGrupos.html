@@ -23,27 +23,28 @@
 
   </header>
   <main>
-    
 
-  
-    <div class=" modal fade " id="alerta" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+
+
+    <div class=" modal fade " id="alerta" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+      aria-labelledby="modalTitleId" aria-hidden="true">
       <div class="alerta modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
         <div class="ms modal-content">
-          
+
           <div id="liveAlertPlaceholder" class="modal-body">
-            
+
           </div>
-         
+
         </div>
       </div>
     </div>
-    
-    
+
+
     <!-- Optional: Place to the bottom of scripts -->
-    
-      
-    
- 
+
+
+
+
 
     <div class="container">
       <div class="row">
@@ -94,8 +95,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalTitleId">Modal title</h5>
-          <button type="button" onClick="cerrarModal()" class="btn-close" data-bs-dismiss="modal"
-            aria-label="Close"></button>
+
         </div>
         <div class="modal-body">
           <form id="formulario" action="">
@@ -120,7 +120,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
 
         </div>
       </div>
@@ -157,7 +157,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
 
         </div>
       </div>
@@ -176,7 +176,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalTitleId">Modal eliminar</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
           </div>
           <div class="modal-body">
             <div id="modalcontent">
@@ -184,7 +184,7 @@
             </div>
             <form id="formConfirmacion" action="">
               <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
-              <button type="submit" class="btn btn-primary">Cancelar</button>
+              <button type="submit" style="float: right;" class="btn btn-secondary">Cerrar</button>
             </form>
 
           </div>
@@ -274,10 +274,10 @@
           .then((datosrespuesta) => {
             console.log('Datos, datosrespuesta');
             myModal.hide();
-            
+
           })
           .catch(error => console.error('Error:', error))
-          .then(response =>  alerts('El grupo se actualizó correctamente', 'success'));
+          .then(response => alerts('El grupo se actualizó correctamente', 'success'));
 
       });
 
@@ -285,14 +285,14 @@
 
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
     const alerta = new bootstrap.Modal(document.getElementById('alerta'))
-   
+
     // FUNCION PARA MOESTRAR EL ALERT
-    
-    function alerts(message, type) {  
+
+    function alerts(message, type) {
       var wrapper = document.createElement('div')
       wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" onClick="cargar()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
       alertPlaceholder.append(wrapper)
-      
+
       alerta.show();
 
     }
@@ -346,12 +346,7 @@
       });
 
 
-      formConfirmacion.addEventListener('submit', function (e) {
-        alerts('Cancelando...', 'warning');
-        mdDelete.hide();
 
-        e.preventDefault();
-      });
 
     }
 
@@ -373,7 +368,7 @@
 
       formulario.addEventListener('reset', function (e) {
         e.preventDefault();
-        alerts('Cancelando...', 'warning');
+
         myModal.hide();
       })
 
@@ -398,7 +393,7 @@
 
           })
           .catch(error => alerts('Ocurrió un error', 'danger'))
-          .then(response =>  myModal.hide(), location.reload());
+          .then(response => myModal.hide(), location.reload());
 
       });
 

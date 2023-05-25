@@ -97,8 +97,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitleId">Modal title</h5>
-                        <button type="button" onClick="cerrarModal()" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        
                     </div>
                     <div class="modal-body">
                        
@@ -196,11 +195,14 @@
                             <div class="mb-3">
                                 <button type="reset" id="cancel-rest" class="btn btn-danger">Cancelar</button>
                                 <button type="submit" id="" class="btn btn-primary">Guardar</button>
+
+                                
                             </div>
+                            
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        
 
                     </div>
                 </div>
@@ -215,7 +217,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="tite">Detalles estudiante</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
                     </div>
                     <div class="modal-body">
 
@@ -314,7 +316,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        
 
                     </div>
                 </div>
@@ -333,7 +335,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitleId">Modal eliminar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                       
                     </div>
                     <div class="modal-body">
                         <div id="modalcontent">
@@ -341,7 +343,7 @@
                         </div>
                         <form id="formConfirmacion" action="">
                             <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
-                            <button type="submit" class="btn btn-primary">Cancelar</button>
+                            <button type="submit" style="float: right;"class="btn btn-secondary">Cerrar</button>
                         </form>
 
                     </div>
@@ -555,7 +557,7 @@
 
             formConfirmacion.addEventListener('submit', function (e) {
                 mdDelete.hide();
-                alerts('Cancelando...', 'warning');
+                
                 e.preventDefault();
             });
         };
@@ -686,7 +688,7 @@
         };
 
         formulario.addEventListener('reset', function (e) {
-            alerts('Cancelando', 'warning');
+            
             limpiarCampos();
             myModal.hide();
         });
