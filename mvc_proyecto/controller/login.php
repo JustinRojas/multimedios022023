@@ -1,5 +1,6 @@
 <?php
 
+
     class Login extends  Controller{
 
         function __construct(){
@@ -18,10 +19,18 @@
                 'password' => $_POST['password']
             ];
 
-            var_dump($arreglo);
+            $user= $this->model->autenticar($arreglo);
+            
+            var_dump($user);
             
         }
     }
 
     
 ?>
+
+
+
+
+
+
