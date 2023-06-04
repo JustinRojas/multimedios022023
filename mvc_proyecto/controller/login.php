@@ -9,6 +9,18 @@
         function render(){
             $this->view->render('login/index');
         }
+
+
+        function autenticar(){
+            $arreglo = 
+            [
+                'email' => $_POST['email'],
+                'password' => $_POST['password']
+            ];
+
+            var_dump($arreglo);
+            
+        }
     }
 
     
