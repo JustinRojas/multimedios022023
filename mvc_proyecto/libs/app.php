@@ -1,16 +1,19 @@
 <?php
-class App{
+
+class App {
 
     function __construct(){
 
-        $url = isset($_GET['url']) ? $_GET['url'] : null;
-        $url = rtrim($url,'/'); //quita los espacios a la URL
-        $url = explode('/', $url); //para convertir en un vectos la url
+       $url = isset($_GET['url']) ? $_GET['url']: null;
+               // if ( vacio) verdadero usa geturl,  sino es null
+       $url = rtrim( $url, '/');
 
-        //pagina/admin/creat
-        //$url = 0 pagina(controlador=login) / 1 admin/ 2 funcion
+       $url = explode('/', $url);
 
-        if (empty($url[0])){
+        // paginas/admin/create/
+        // 0 admin/ 1 create/
+
+        if(empty($url[0])){
             $archivoController = 'controller/main.php';
             require_once $archivoController;
             $controller = new Main();
@@ -20,36 +23,35 @@ class App{
         }
 
         $archivoController = 'controller/'.$url[0].'.php';
-        if (file_exists($archivoController)){
-            require_once $archivoController;
 
-            $controller = new $url[0]();
+
+        if(file_exists($archivoController)){
+            require_once $archivoController;
+              
+            $controller = new $url[0];   
             $controller->loadModel($url[0]);
-            //id=1,nombre=mario, apellido=jimenez, correo=mario@ucr.ac.cr
-            //1/mario/jimenez/correo  
-            $nparam = sizeof($url); //obtengo cuantos elementos tiene la url
-            //viene con funcion 
-            if ( $nparam > 1 ){
-                //viene con funcion y paramentros
-                if ($nparam > 2 ){
+    // paginas/admin/create/
+    
+    //1/mario/jimenez/mario/43/3443/4
+            $nparam = sizeof($url);
+
+            if($nparam > 1){
+                if($nparam > 2){
                     $param = [];
-                    for ( $i = 2; $i < $nparam; $i++){
+                    for($i = 2; $i < $nparam; $i++){
                         array_push($param, $url[$i]);
                     }
-
-                    //pagina/consultar/1/23
-
+                    // paginas/admin/create/
+                    // 0 admin/ 1 create/                    
                     $controller->{$url[1]}($param);
-
-
+                                //{ create ($datos) }
                 }else{
                     $controller->{$url[1]}();
                 }
-
-            }//Sin funcion
-            else{
+            }else{
                 $controller->render();
             }
+
         }
         else{
             require_once 'controller/error.php';
@@ -58,8 +60,7 @@ class App{
 
     }
 
-
-
 }
+
 
 ?>

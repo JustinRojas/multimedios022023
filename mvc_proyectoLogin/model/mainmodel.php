@@ -5,4 +5,5 @@ class MainModel extends Model{
         parent::__construct();
     }
 }
+
 ?>
