@@ -23,7 +23,7 @@
             if(isset($user->id)){
                     session_start();
                     $_SESSION['id'] = $user->id;
-                    $_SESSION[''] = $user->name;
+                    $_SESSION['name'] = $user->name;
 
                     $this->view->render('main/index');
             }else{

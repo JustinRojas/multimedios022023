@@ -1,4 +1,5 @@
 <?php
+ 
     require 'view/header.php';
     require 'view/menu.php';
 ?>
@@ -36,9 +37,9 @@
                                     <td>'.$datos->email.'</td>
                                     <td>'.$datos->password.'</td>
                                     <td>
-                                        <a name="eliminar" id="eliminar" class="btn btn-danger" href="'.constant('URL').'usuario/eliminarusuario/'.$datos->id.'" role="button">Eliminar</a>
+                                        <a name="eliminar" id="eliminar" class="btn btn-danger" href="'.constant('URL').'usuarios/eliminarUsuario/'.$datos->id.'" role="button">Eliminar</a>
                                         ||
-                                        <a name="editar" id="editar" class="btn btn-primary" href="'.constant('URL').'usuario/verUsuarios/'.$datos->id.'" role="button">Editar</a>
+                                        <a name="editar" id="editar" class="btn btn-primary" href="'.constant('URL').'usuarios/verUsuario/'.$datos->id.'" role="button">Editar</a>
                                     </td>
                                 </tr>';
                         }

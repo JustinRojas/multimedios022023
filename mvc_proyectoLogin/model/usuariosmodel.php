@@ -33,79 +33,79 @@ class UsuariosModel extends Model{
         }
     }
 
-//     public function insertarUsuarios($datos){
-// //# INSERT INTO curso(id, nombre, descripcion, tiempo, usuario) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]')
-//         try {
-//             //code...
-//             $datos['id'] = "0";
-//             $stringSQL = 'INSERT INTO curso(id, name, email, password) VALUES ( :id, :name, :email, :password);';
-//             $query = $this->db->connect()->prepare($stringSQL);
-//             $query->execute($datos);
-//             return true;
+    public function insertarUsuarios($datos){
 
-//         } catch (PDOException $th) {
-//             //throw $th;
-//             //var_dump($th);
-//             return false;
-//         }
-//     }
+        try {
+            //code...
+            $datos['id'] = "0";
+            $stringSQL = 'INSERT INTO user(id, name, email, password) VALUES ( :id, :name, :email, :password);';
 
-//     public function verCursos($id){
+            $query = $this->db->connect()->prepare($stringSQL);
+
+            $query->execute($datos);
+            return true;
+
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+    public function verUsuario($id){
         
-//         try {
-//             $item = new classCursos();
-//             //code...
-//             $stringSQL = "Select * FROM `curso` where id=:id;";
-//             $query = $this->db->connect()->prepare($stringSQL);
-//             $query->execute(['id'=>$id]);
+        try {
+            $item = new User();
+            //code...
+            $stringSQL = "Select * FROM `user` where id=:id;";
 
-//             while ( $row = $query->fetch()){//obtiene la fila
-//                 foreach ($row as $key => $value) {
-//                     # code...
-//                     $item->$key = $value;
-//                    // $_SESSION['autenticado'] = true;
-//                 }
-//             }
-//             return $item;
-//         } catch (PDOException $th) {
-//             //throw $th;
-//             return [];
-//         }           
-//     }
-//       //actualizarcurso
-//       public function actualizarcurso($datos){
-// //            var_dump($datos);
-//         try {
-//             //code... 
-//             //#UPDATE curso SET nombre='[value-2]',descripcion='[value-3]',tiempo='[value-4]',usuario='[value-5]' WHERE id='[value-1]'                     
-//             $datos['usuario'] = "Prof Mario";
-//             $stringSQL = 'UPDATE curso SET nombre=:nombre,descripcion=:descripcion,tiempo=:tiempo,usuario=:usuario WHERE id=:id ;';
-//             $query = $this->db->connect()->prepare($stringSQL);
-//             $query->execute($datos);
-//             return true;
-
-//         } catch (PDOException $th) {
-//             //throw $th;
-//             var_dump($th);
-//             return false;
-//         }
-//     }   
-
-//     //eliminarcurso
-//     public function eliminarcurso($id){        
-//         try {            
-//             //code...
-//             $stringSQL = "DELETE FROM `curso` WHERE id =:id;";
-//             $query = $this->db->connect()->prepare($stringSQL);
-//             $query->execute(['id'=>$id]);
+            $query = $this->db->connect()->prepare($stringSQL);
             
-//             return true;
-//         } catch (PDOException $th) {
-//             //throw $th;
-//             var_dump($th);
-//             return false;
-//         }           
-//     }
+            $query->execute(['id'=>$id]);
+
+            while ( $row = $query->fetch()){//obtiene la fila
+                foreach ($row as $key => $value) {
+                    # code...
+                    $item->$key = $value;
+                   // $_SESSION['autenticado'] = true;
+                }
+            }
+            return $item;
+        } catch (PDOException $th) {
+            //throw $th;
+            return [];
+        }           
+    }
+//       //actualizarUsuario
+      public function actualizarUsuario($datos){
+//            var_dump($datos);
+        try {
+            //code... 
+            $stringSQL = 'UPDATE user SET name=:name,email=:email,password=:password WHERE id=:id ;';
+            $query = $this->db->connect()->prepare($stringSQL);
+            $query->execute($datos);
+            return true;
+
+        } catch (PDOException $th) {
+            //throw $th;
+            var_dump($th);
+            return false;
+        }
+    }   
+
+//     //eliminarUsuario
+    public function eliminarUsuario($id){        
+        try {            
+            //code...
+            $stringSQL = "DELETE FROM `user` WHERE id =:id;";
+            $query = $this->db->connect()->prepare($stringSQL);
+            $query->execute(['id'=>$id]);
+            
+            return true;
+        } catch (PDOException $th) {
+            //throw $th;
+            var_dump($th);
+            return false;
+        }           
+    }
 }
 
 ?>

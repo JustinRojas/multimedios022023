@@ -39,11 +39,11 @@ class Cursos extends Controller{
         $this->render();
     }
 
-    function detalle(){                      
-        $this->view->datos = [];
-        $this->view->mensaje = "Detalles del Cursos";
-        $this->view->render('cursos/detalle');
-    }
+    // function detalle(){                      
+    //     $this->view->datos = [];
+    //     $this->view->mensaje = "Detalles del Cursos";
+    //     $this->view->render('cursos/detalle');
+    // }
 
     function verCursos( $param = null ){        
         $id = $param[0];

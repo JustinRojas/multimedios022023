@@ -16,7 +16,7 @@ require 'view/menu.php';
 
             <h6 class="m-2 ">Ingrese sus datos</h6>
 
-            <form action="<?php echo constant('URL'); ?>login/autenticar" method="post" class="m-4">
+            <form action="<?php echo constant('URL'); ?>login/autenticar" method="POST" class="m-4">
 
 
                 <!-- Email input -->
