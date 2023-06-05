@@ -52,7 +52,7 @@ class CursosModel extends Model{
     }
 
     public function verCursos($id){
-        var_dump($_SESSION);
+        
         try {
             $item = new classCursos();
             //code...

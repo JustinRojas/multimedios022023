@@ -31,9 +31,9 @@
                                     <td scope="row">'.$datos->id.'</td>
                                     <td>'.$datos->nombre.'</td>                                  
                                     <td>
-                                        <a name="eliminar" id="eliminar" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                                        <a name="eliminar" id="eliminar" class="btn btn-danger" href="'.constant('URL').'grupos/eliminargrupo/'.$datos->id.'" role="button">Eliminar</a>
                                         ||
-                                        <a name="editar" id="editar" class="btn btn-primary" href="#" role="button">Editar</a>
+                                        <a name="editar" id="editar" class="btn btn-primary" href="'.constant('URL').'grupos/verGrupos/'.$datos->id.'" role="button">Editar</a>
                                     </td>
                                 </tr>';
                         }
