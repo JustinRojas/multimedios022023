@@ -15,7 +15,7 @@ class LoginModel extends Model
     public function autenticar($datos)
     {
         $item = new User();
-        var_dump($datos);
+       
         $queryString = "SELECT `id`, `name`, `email`, `password` 
             FROM `user` 
             WHERE `email` = :email AND `password` = :password; ";
