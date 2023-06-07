@@ -9,6 +9,7 @@ class Session{
             session_start();
         }
 
+        
         if(isset($_SESSION['id'])){
             $this->view->render('main/index'); 
         }
