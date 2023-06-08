@@ -46,10 +46,10 @@
             
         }
 
-        function cerrarS(){
+        function cerrarSesion(){
             session_start();
            if(session_destroy()){
-            $this->view->render('login/index');
+            $this->view->render('main/index');
            }else{
             $this->view->render('main/index');
            }

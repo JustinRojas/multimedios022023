@@ -1,5 +1,7 @@
 <?php
 $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$ses = session_status();
+
 ?>
 
 <nav class="navbar navbar-expand-sm navbar-light bg-info">
@@ -19,7 +21,7 @@ $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
           <a class="nav-link" href="listaCursos.html" aria-current="page"> Blog</a>
         </li>
 
-        <li class="nav-item dropdown" <?php echo $link=='http://localhost/multimedios022023/mvc_proyectoLogin/login'? "hidden" :"";?> >
+        <li class="nav-item dropdown" <?php echo $ses==2? "" :"hidden";?> >
           <a class="nav-link dropdown-toggle" 
           data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
             aria-expanded="false">Usuarios</a>
@@ -34,17 +36,17 @@ $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
       </ul>
 
       <div class="m-2">
-        <a type="button" <?php echo $link=='http://localhost/multimedios022023/mvc_proyectoLogin/login'? "hidden" :"";?>
+        <a type="button" <?php echo $ses==1 || $ses==0? "" :"hidden ";?> <?php echo $link=='http://localhost/multimedios022023/mvc_proyectoLogin/login'? "hidden" :"";?>
         href="<?php echo constant('URL'); ?>login" class="btn btn-primary btn-sm">Login</a>
       </div> 
 
       <div class="m-2">
-        <button type="button" class="btn btn-secondary btn-sm">Registrarse</button>
+        <button type="button" <?php echo $ses==1 || $ses==0? "" :"hidden";?> class="btn btn-secondary btn-sm">Registrarse</button>
       </div>
 
       <div class="m-2">
-        <form action="<?php echo constant('URL'); ?>login/cerrarS" method="post">
-        <button type="submit" onClick="" class="btn btn-secondary btn-sm">Salir</button>
+        <form action="<?php echo constant('URL'); ?>login/cerrarSesion" method="post">
+        <button type="submit" <?php echo $ses==2? "" :"hidden";?> onClick="" class="btn btn-secondary btn-sm">Salir</button>
         </form>
       </div>
 
