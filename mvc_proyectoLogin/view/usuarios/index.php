@@ -1,5 +1,4 @@
 <?php
- 
     require 'view/header.php';
     require 'view/menu.php';
 ?>

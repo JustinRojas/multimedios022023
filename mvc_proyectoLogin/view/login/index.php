@@ -1,65 +1,63 @@
 <?php
 require 'view/header.php';
 require 'view/menu.php';
+
+
+
 ?>
-<div class="container-fluid" id="contendorprincipal">
+<div class="container-fluid " id="contendorprincipal">
+  
+<?php echo $this->mensajeResultado ?>
 
-    
+<section class="vh-100" >
+  <div class="container py-5 h-100 ">
+    <div class="row d-flex align-items-center justify-content-center h-100 ">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://www.onoratoinformatica.it/wp-content/uploads/2019/02/password-manager.png"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 " style="border: 1px solid #A9E2F3; box-shadow: 5px 1px; ">
 
+      <h3 class="mb-3" style=" text-align: center; color: blue;"> Login</h3>
+        <form action="<?php echo constant('URL'); ?>login/autenticar" method="POST" class="m-3" >
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="email" name="email" placeholder="Email address here" class="form-control form-control-md" />
+            <label class="form-label" for="form1Example13">Email address</label>
+          </div>
 
-        <div class="tab-content" style="width: 28%; height: 80%; background-color: rgba(26,188,156,0.3); border-radius: 6px; 
-                    margin: 0px;
-                 padding: 0px;  position: absolute;
-                    top: 10%;
-                    left: 40%;">
-            <h3 class="m-4 ">Login</h3>
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" id="password" name="password" placeholder="Password here" class="form-control form-control-md" />
+            <label class="form-label" for="form1Example23">Password</label>
+          </div>
 
-            <h6 class="m-2 ">Ingrese sus datos</h6>
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            <!-- Checkbox -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+              <label class="form-check-label" for="form1Example3"> Remember me </label>
+            </div>
+            <a href="#!">Forgot password?</a>
+            
+          </div>
+          
+          <div   class="d-flex justify-content-center align-items-center ">
+          <button  style="width:60% ;" type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+          </div>
 
-            <form action="<?php echo constant('URL'); ?>login/autenticar" method="POST" class="m-4">
+          <!-- Submit button -->
+          
 
+          
 
-                <!-- Email input -->
-                <div class="form-outline mb-4 ">
-                    <label class="" for=""> Email</label>
-                    <input type="email" name="email" id="email" class="form-control" />
-                    <label class="form-label" for="loginName">Email or username</label>
-                </div>
+        
 
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <label class="" for=""> Password</label>
-                    <input type="password" id="password" name="password" class="form-control" />
-                    <label class="form-label" for="loginPassword">Password</label>
-                </div>
-
-                <!-- 2 column grid layout -->
-                <div class="row mb-4">
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check mb-3 mb-md-0">
-
-                            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                            <label class="form-check-label" for="loginCheck"> Remember me </label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <!-- Simple link -->
-                        <a href="#!">Forgot password?</a>
-                    </div>
-                </div>
-
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
-
-                <!-- Register buttons -->
-            </form>
-
-
-
-
-        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Pills content -->
 </div>

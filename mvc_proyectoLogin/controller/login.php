@@ -5,6 +5,7 @@
 
         function __construct(){
             parent:: __construct();
+            $this->view->mensajeResultado = "";   
         }
 
         function render(){
@@ -27,13 +28,36 @@
 
                     $this->view->render('main/index');
             }else{
+
+
+                $mensajeResultado = '
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    Datos incorrectos
+                </div>';
+
+                $this->view->mensajeResultado = $mensajeResultado;   
+
+              
+                $this->view->render('login/index');
                
-                $this->view->render('login/index'); 
             }
             
             
         }
+
+        function cerrarS(){
+            session_start();
+           if(session_destroy()){
+            $this->view->render('login/index');
+           }else{
+            $this->view->render('main/index');
+           }
+            
+    
     }
+
+}
 
     
 ?>
